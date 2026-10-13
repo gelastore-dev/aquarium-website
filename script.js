@@ -1,10 +1,9 @@
 const storename = "M FISH";
-let fishname1 = "guppy";
-let fishprice1 = 458000;
-let isavailable1 = true;
-let fishname2 = "arvana";
-let fishprice2 = 7000000;
-let isavailable2 = false;
-console.log(fishname1);
-console.log(typeof isavailable2);
+let fishname = "guppy";
+let fishprice = 458000;
+let isavailable = true;
+console.log(fishname);
+console.log(typeof isavailable);
 console.log(storename);
+console.log(fishprice);
+console.log(isavailable);

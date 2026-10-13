@@ -1,11 +1,8 @@
-const storename = "M FISH";
-let fishname = "guppy";
-let fishprice = 458000;
+let fishname = "arvana";
+let fishprice = 7000000;
 let isavailable = true;
 console.log(fishname);
-console.log(typeof isavailable);
-console.log(storename);
 console.log(fishprice);
 console.log(isavailable);
-fishprice = 700000;
-console.log(fishprice);
+console.log(typeof isavailable);
+console.log(typeof fishprice);

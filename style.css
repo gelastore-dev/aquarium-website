@@ -650,15 +650,11 @@ form button {
     line-height: 1.8;
     overflow-wrap: anywhere;
 }
-.decor-item button {
-    padding: 8px 16px;
+.buy-button {
+    padding: 8px 14px;
     font-size: 14px;
-    width: auto
-    min-width : 0;
-    height : auto;
-}
-.decor-item button:hover {
-    background-color: #065b51;
+    width: auto;
+    min-width: 0;
 }
 @media (max-width : 450px) {
     .decor-item {

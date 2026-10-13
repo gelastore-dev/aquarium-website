@@ -7,3 +7,5 @@ console.log(typeof isavailable);
 console.log(storename);
 console.log(fishprice);
 console.log(isavailable);
+fishprice = 700000;
+console.log(fishprice);

@@ -1,11 +1,7 @@
-const storename = " M FISH";
-let fishname1 = "arvana";
-let fishprice1 = 8000000;
-let isavailable1 = true;
-let fishname2 = "guppy";
-let fishprice2 = 450000;
-let isavailable2 = false;
-console.log(fishname1, fishprice1, isavailable1);
-console.log(fishname2, fishprice2, isavailable2);
-console.log(typeof isavailable1);
-console.log(fishname2);
+let price = 3000000;
+let discountpercent = 10;
+let discount = price * discountpercent / 100;
+let finalprice = price - discount;
+console.log(finalprice);
+console.log(price);
+console.log(discount);

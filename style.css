@@ -12,7 +12,7 @@ body{
     text-align: center;
 }
 header {
-    background-color: #073b3a;
+    background-color: #134d4c;
     color: white;
     padding: 25px 15px;
     text-align: center;
@@ -283,78 +283,8 @@ button:hover {
     padding: 20px 20px;
     margin-top: 12px;
 }
-Log in
-Sign up for free
-You said:
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin: 0;
-    background-color: #f1f8f7;
-    color: #243b3a;
-    line-height: 1.8;
-    text-align: center;
-}
-header {
-    background-color: #073b3a;
-    color: white;
-    padding: 25px 15px;
-    text-align: center;
-}
-header h1{
-    margin: 0;
-    font-size: 28px;
-}
-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding: 15px;
-    background-color: #064e4a;
-}
-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-size: 16px;
-}
-nav a:hover{
-    color: #72e0c0;
-}
-main {
-    width: 90%;
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
-main ul {
-    display: flex;
-    flex-direction: column;
-}
-main > img{
-    width: 100%;
-    max-height: 420px;
-    object-fit: cover;
-    border-radius: 16px;
-    margin-bottom: 20px;
-}
-main h2 {
-    text-align: center;
-    margin: 25px 0;
-}
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
+
+
 article {
     background-color: white;
     padding: 16px;

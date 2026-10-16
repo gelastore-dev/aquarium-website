@@ -611,3 +611,9 @@ form button {
         padding: 9px 5px;
     }
 }
+.highlight {
+    color: lightblue;
+    background-color: darkblue;
+    padding: 15px;
+    border-radius: 10px;
+}

@@ -353,6 +353,11 @@ button:hover {
 
     transition: transform 0.3s;
 }
+.categories {
+    padding: 18px 15px;
+    text-align: center;
+    background-color: #f5f3ed;
+}
 
 .category-card:hover {
     transform: translateY(-5px);
@@ -406,6 +411,11 @@ button:hover {
     height: 170px;
     object-fit: contain;
     border-radius: 10px;
+}
+.categories h2 {
+    color: #607d8b;
+    font-size: 22px;
+    margin: 0 0 18px;
 }
 
 .category-card h3 {

@@ -617,3 +617,25 @@ form button {
     padding: 15px;
     border-radius: 10px;
 }
+.cart.box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px #000010;
+}
+.cart.box h2 {
+    color: #087d99;
+}
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #008c9e;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+.back-btn:hover {
+    background-color: #006b7c;
+}

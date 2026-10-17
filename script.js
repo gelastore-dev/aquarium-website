@@ -9,9 +9,7 @@ buttons.forEach(function(button) {
     
         
         
-        window.location.href =
-        "cart.html?name=" + encodeURIComponent(name) +
-        "&price=" + encodeURIComponent(price);
+        window.location.href = "cart.html";
     
     });
 });

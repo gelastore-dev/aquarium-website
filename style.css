@@ -313,11 +313,57 @@ button:hover {
 }
 
 @media (max-width : 600px) {
+    body {
+        margin: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+    header {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px 10px;
+    }
     header h1{
         font-size: 25px;
     }
     nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
         gap: 12px;
+    }
+    nav a {
+        font-size: 13px;
+    }
+    header img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .categories {
+        padding: 15px 8px;
+        box-sizing: border-box;
+    }
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax0, 1fr);
+        gap: 18px 10px;
+        width: 100%;
+    }
+    .category-card {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+    .category-card img {
+        width: 100%;
+        max-width: 150px;
+        height: 105px;
+        object-fit: cover;
+    }
+    .category-card h3 {
+        font-size: 13px;
     }
     main {
         width: 94%;

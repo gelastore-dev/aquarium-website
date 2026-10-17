@@ -10,12 +10,14 @@ buttons.forEach(function(button) {
             name : name,
             price : price,
         };
-            const savedproductdata = JSON.parse(localStorage.getItem("cart" || []));
+            const savedproductdata = JSON.parse
+                (localStorage.getItem("cart" || [])
+            );
             savedproductdata.forEach(function(product)) {
-                
-            console.log("نام محصول :", savedproductdata.name);
-            console.log("قیمت محصول :", savedproductdata.price);
-        }
+
+                console.log("نام محصول :", savedproductdata.name);
+                console.log("قیمت محصول :", savedproductdata.price);
+        };
         
         
         window.location.href = "cart.html";

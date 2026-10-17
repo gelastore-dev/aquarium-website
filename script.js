@@ -6,7 +6,7 @@ buttons.forEach(function(button) {
         const card = button.closest("article");
         const name =card.querySelector("h2").textContent.trim();
         const pricetext = card.querySelector(".price").textContent;
-        const price = number(pricetext.replace(/[^\d]/g, ""));
+        const price = Number(pricetext.replace(/[^\d]/g, ""));
         const product = { name, price };
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         cart.push(product);
@@ -18,15 +18,15 @@ buttons.forEach(function(button) {
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
             let total = 0;
             cartitems.innerHTML = "";
-            cart.forEach(function(product)) {
+            cart.forEach(function(product) {
                 const item = document.createElement("p");
-                item.textContent = product.name + "_" + product.price + "تومان";
+                item.textContent = 
+                    product.name + "_" + product.price + "تومان";
                 cartitems.appendChild(item);
                 total += product.price;
 
-            }
-        }
+       
     
     });
     carttotal.textContent = total.tolocalestring("fa-IR");
-});
+}

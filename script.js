@@ -10,12 +10,9 @@ buttons.forEach(function(button) {
             name : name,
             price : price,
         };
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.push(product);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        const savedproduct = localStorage.getItem("cart");
-        if (savedproduct) {
-            const savedproductdata = JSON.parse(savedproduct);
+            const savedproductdata = JSON.parse(localStorage.getItem("cart" || []));
+            savedproductdata.forEach(function(product)) {
+                
             console.log("نام محصول :", savedproductdata.name);
             console.log("قیمت محصول :", savedproductdata.price);
         }

@@ -1,7 +1,4 @@
 
-alert("کلیک اجرا شد");
-console.log("javascript connected");
-
 const buttons = document.querySelectorAll(".buy-btn");
 
 console.log("تعداد دکمه‌های خرید:", buttons.length);
@@ -57,4 +54,39 @@ if (cartItems && cartTotal) {
     });
 
     cartTotal.textContent = total.toLocaleString("fa-IR");
+}
+
+
+const searchInput = document.querySelector("#searchInput");
+const cards = document.querySelectorAll(".category-card");
+const searchMessage = document.querySelector("#searchMessage");
+
+if (searchInput) {
+    searchInput.addEventListener("input", function () {
+        const searchText = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        cards.forEach(function (card) {
+            const categoryName = card
+                .querySelector("h3")
+                .textContent
+                .toLowerCase();
+
+            if (categoryName.includes(searchText)) {
+                card.style.display = "";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        if (searchMessage) {
+            if (visibleCount === 0) {
+                searchMessage.textContent =
+                    "دسته‌بندی موردنظر پیدا نشد!";
+            } else {
+                searchMessage.textContent = "";
+            }
+        }
+    });
 }

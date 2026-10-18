@@ -695,3 +695,23 @@ form button {
 .back-btn:hover {
     background-color: #006b7c;
 }
+
+.search-section {
+    text-align: center;
+    padding: 25px 15px;
+}
+
+#searchInput {
+    width: 80%;
+    max-width: 450px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#searchMessage {
+    color: #c0392b;
+    margin-top: 12px;
+}

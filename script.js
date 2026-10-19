@@ -102,7 +102,7 @@ if (priceSort && productContainer) {
                 a.querySelector(".price").textContent.replace(/[^\d]/g, "")
             );
             const priceB = Number(
-                b.querySelector(".price").textContent.replace(/[^\d]/g, "");
+                b.querySelector(".price").textContent.replace(/[^\d]/g, "")
             );
             if (priceSort.value === "high-low") {
                 return priceB - priceA;
@@ -113,9 +113,8 @@ if (priceSort && productContainer) {
             return 0;
             });
             
-            cards.forEach(function(card)) {
+            cards.forEach(function(card) {
                 productContainer.appendChild(card);
             });
         });
-    });
 }

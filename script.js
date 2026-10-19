@@ -93,11 +93,11 @@ if (searchInput) {
 const priceSort = document.querySelector("#priceSort");
 const productContainer = document.querySelector(".fish-item");
 if (priceSort && productContainer) {
-    priceSort.addEventListener("change", function()) {
+    priceSort.addEventListener("change", function() {
         const cards = Array.from(
-            productContainer.querySelector("article");
+            productContainer.querySelector("article")
         );
-        cards.sort(function(a,b)) {
+        cards.sort(function(a,b) {
             const priceA = Number(
                 a.querySelector(".price").textContent.replace(/[^\d]/g, "")
             );

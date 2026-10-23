@@ -203,7 +203,7 @@ article {
 }
 button {
     background-color: #087f70;
-    color: white;
+    color: rgb(8, 6, 6);
     border: none;
     padding: 10px 22px;
     border-radius: 8px;
@@ -339,7 +339,7 @@ button:hover {
     border-radius: 10px;
 }
 .fish-item button {
-    background-color: #065b51;
+    background-color: #0b554c;
     color: white;
     padding: 12px 20px;
     font-size: 16px;
@@ -347,6 +347,7 @@ button:hover {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    align-items: center;
 }
 .fish-item button:hover{
     background-color: rgb(10, 175, 120);
@@ -355,6 +356,7 @@ button:hover {
     margin-top: 12px;
     line-height: 2;
     padding: 15px 20px;
+    align-items: center;
 }
 .equipment-item {
     display: grid;
@@ -914,4 +916,7 @@ form button {
     .product-image {
         max-width: 100%;
     }
+}
+.search-section h2 {
+    color: #065b51;
 }

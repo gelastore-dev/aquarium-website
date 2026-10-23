@@ -7,7 +7,7 @@
             M fish
         </title>
         <link rel="stylesheet" href="style.css">
-        <script src="script.js" defer></script>
+        
     </head>
     <body>
         <header>
@@ -15,10 +15,11 @@
                 M FISH
             </h1>
             <nav>
-                <a href="index.html"> خانه </a>
-                <a href="product.html"> محصولات </a>
-                <a href="about.html"> درباره ما </a>
-                <a href="contact.html"> تماس با ما </a>
+               <a href="index.html">خانه</a>
+               <a href="product.html">محصولات</a>
+               <a href="about.html">درباره ما</a>
+               <a href="contact.html">تماس با ما</a>
+               <a href="order.html">سبد خرید</a>
             </nav>
         </header>
         <main>
@@ -33,9 +34,7 @@
                     <img src="images/download (1).webp" alt="فیلتر">
                     <p class="price">1190000تومان </p>
                     
-                    <button class="buy-btn">
-                        خرید
-                    </button>
+                    <button class="buy-btn" onclick="buyEquipment(101)">خرید</button>
                
                 </article>
                 <article>
@@ -47,9 +46,7 @@
                     </p>
                     <img src="images/OIP (15).webp" alt="بخاری">
                     <p class="price">1270000 تومان </p>
-                    <button class="buy-btn">
-                        خرید
-                    </button>
+                    <button class="buy-btn" onclick="buyEquipment(102)">خرید</button>
                 </article>
                 <article>
                     <h2>
@@ -61,9 +58,7 @@
                     <img src="images/OIP (16).webp" alt="پمپ">
                     <p class="price">6300000 تومان</p>
                  
-                    <button class="buy-btn">
-                        خرید
-                    </button>
+                    <button class="buy-btn" onclick="buyEquipment(103)">خرید</button>
               
                 </article>
                 <article>
@@ -75,9 +70,7 @@
                     </p>
                     <img src="images/OIP (17).webp" alt="دماسنج">
                     <p class="price">1600000 تومان </p>
-                    <button class="buy-btn">
-                        خرید
-                    </button>
+                    <button class="buy-btn" onclick="buyEquipment(104)">خرید</button>
                 </article>
                 <article>
                     <h2>
@@ -88,9 +81,7 @@
                     </p>
                     <img src="images/OIP (18).webp" alt="led">
                     <p class="price">1450000 تومان </p>
-                    <button class="buy-btn">
-                        خرید
-                    </button>
+                    <button class="buy-btn" onclick="buyEquipment(105)">خرید</button>
                 </article>
                 <article>
                     <h2>
@@ -102,12 +93,10 @@
                     </p>
                     <img src="images/OIP (19).webp" alt="siphon">
                     <p class="price">1721000 تومان </p>
-                    <button class="buy-btn">
-                        خرید
-                    </button>
+                    <button class="buy-btn" onclick="buyEquipment(106)">خرید</button>
                 </article>
             </section>
         </main>
-
+        <script src="order.js"></script>
     </body>
 </html>

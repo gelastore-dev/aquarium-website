@@ -12,21 +12,42 @@
         </a>
     </head>
     <body>
-        <header>
-            <h1>
-                ام فیش
-            </h1>
-            <nav>
-                <a href="index.html"> خانه </a>
-                <a href="product.html"> محصولات </a>
-                <a href="about.html"> درباره ما </a>
-                <a href="contact.html"> تماس با ما </a>
-            </nav>
-            <img class="hero" src="images/images (2).jpg" alt="عکس فروشگاه">
-            <p>
-                شکوه اقیانوس در آکواریوم شما
-            </p>
+        
+        <header class="site-header" dir="rtl">
+
+            <div class="top-bar">
+
+                <a href="index.html" class="logo">
+                    <img src="images/IMG_1692.PNG" alt="لوگوی M Fish" class="logo-img">
+                    <span class="logo-text">M Fish</span>
+                </a>
+
+                <button class="menu-btn" aria-label="باز کردن منو"
+                      onclick="document.querySelector('.nav-menu').classList.toggle('active')">
+                    ☰
+                </button>
+
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html">خانه</a>
+                <a href="product.html">محصولات</a>
+                <a href="about.html">درباره ما</a>
+                <a href="contact.html">تماس با ما</a>
+           </nav>
+
+           <section class="hero-section">
+                <p class="hero-text">
+                     شکوه اقیانوس در آکواریوم شما
+                </p>
+
+                <img class="hero"
+                     src="images/images (2).jpg"
+                     alt="عکس فروشگاه">
+            </section>
+
         </header>
+
         <section class="search-section">
             <h2>
                 جست و جوی محصولات

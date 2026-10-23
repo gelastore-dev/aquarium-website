@@ -1,3 +1,103 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Tahoma, sans-serif;
+    background-color: #f4fbff;
+}
+
+.site-header {
+    width: 100%;
+    padding: 20px 30px;
+}
+
+/* نوار بالای سایت */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* لوگو و نام فروشگاه */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #073b5c;
+    font-size: 22px;
+    font-weight: bold;
+}
+.logo-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.logo-box {
+    width: 45px;
+    height: 45px;
+    background-color: #087eaa;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 25px;
+}
+
+/* آیکون منو */
+.menu-btn {
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    cursor: pointer;
+    color: #073b5c;
+}
+
+/* لینک‌های منو */
+.nav-menu {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.nav-menu.active {
+    display: flex;
+}
+
+.nav-menu a {
+    color: #073b5c;
+    text-decoration: none;
+}
+
+/* متن و عکس اصلی */
+.hero-section {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.hero-text {
+    font-size: 24px;
+    color: #073b5c;
+    margin-bottom: 25px;
+}
+
+.hero {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 12px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -39,7 +139,8 @@ nav {
     flex-wrap: wrap;
     gap: 12px;
     padding: 15px;
-    background-color: #064e4a;
+    background-color: rgb(4, 68, 58);
+    color: white;
 }
 nav a {
     color: white;

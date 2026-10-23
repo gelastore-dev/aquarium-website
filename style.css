@@ -38,6 +38,14 @@ body {
     object-fit: contain;
     border-radius: 8px;
 }
+body {
+  background-image: url("./images/aquarium.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: white;
+}
 
 .logo-box {
     width: 45px;

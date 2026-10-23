@@ -33,8 +33,8 @@ body {
     font-weight: bold;
 }
 .logo-img {
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
     border-radius: 8px;
 }
@@ -57,7 +57,7 @@ body {
     background: transparent;
     font-size: 30px;
     cursor: pointer;
-    color: #073b5c;
+    color: rgb(4, 40, 44);
 }
 
 /* لینک‌های منو */
@@ -73,7 +73,7 @@ body {
 }
 
 .nav-menu a {
-    color: #073b5c;
+    color: white;
     text-decoration: none;
 }
 

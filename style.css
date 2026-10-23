@@ -3,34 +3,34 @@
     margin: 0;
     padding: 0;
 }
-body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin: 0;
-    background-color: #f1f8f7;
-    color: #243b3a;
-    line-height: 1.8;
-    text-align: center;
+/* هدر تصویری ام فیش */
+img.hero {
+  display: block;
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  margin: 0;
 }
-.hero {
-  min-height: 420px;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(5, 20, 40, 0.8),
-      rgba(5, 20, 40, 0.1)
-    ),
-    url("./images/hero-fish.jpg") center / cover no-repeat;
+
+/* متن روی هدر */
+header > p {
   color: white;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 20px 12px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
-header {
-    background-color: #134d4c;
-    color: white;
-    padding: 25px 15px;
-    text-align: center;
-}
-header h1{
-    margin: 0;
-    font-size: 28px;
+
+@media (max-width: 600px) {
+  img.hero {
+    height: 260px;
+  }
+
+  header > p {
+    font-size: 21px;
+  }
 }
 nav {
     display: flex;

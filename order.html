@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            ثبت سفارش | M FISH
+        </title>
+        <link rel="stylesheet" href="order.css">
+
+    </head>
+    <body>
+        <h1>
+            ثبت سفارش
+        </h1>
+        <h2 id="orderProduct"></h2>
+        
+<p id="orderPrice"></p>
+
+<!-- سبد خرید -->
+<section id="cartSection">
+    <h2>سبد خرید من</h2>
+
+    <div id="cartItems"></div>
+
+    <p>
+        تعداد محصولات:
+        <span id="cartCount">0</span>
+    </p>
+
+    <p>
+        جمع کل:
+        <strong id="cartTotal">۰ تومان</strong>
+    </p>
+</section>
+
+<h2>اطلاعات مشتری</h2>
+
+        <section class="order-summery">
+            <h2>
+                خلاصه سفارش
+            </h2>
+            <p>محصول : <span id="summeryName"></span></p>
+            <p>مبلغ قابل پرداخت : <span id="summeryPrice"></span></p>
+        </section>
+        <form id="orderForm">
+            <label for="customerName">نام و نام خانوادگی :</label>
+            <input type="text" id="customerName" required>
+            <br><br>
+            <label for="customerPhone">شماره تماس :</label>
+            <input type="tel" id="customerPhone" required>
+            <br><br>
+            <label for="customerAddress">آدرس :</label>
+            <textarea id="customerAddress" required></textarea>
+            <br><br>
+            <button type="submit">ثبت سفارش</button>
+
+            
+        </form>
+        <section id="savedOrderSection" hidden>
+            <h2>آخرین سفارش ذخیره شده </h2>
+            <p>نام مشتری :<span id="savedCustomerName"></span></p>
+            <p>محصول :<span id="savedProductName"></span></p>
+            <p>مبلغ :<span id="savedProductPrice"></span></p>
+        </section>
+        <p id="orderMessage"></p>
+        <script src="script.js"></script>
+        <script src="order.js"></script>
+    </body>
+</html>

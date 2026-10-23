@@ -1,0 +1,48 @@
+body {
+    font-family: sans-serif;
+    background-color: #f2f8fa;
+    color: #18343d;
+    margin: 0;
+    padding: 30px 16px;
+}
+.order-summery form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 24px;
+    background-color: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+h1,h2 {
+    text-align: center;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+input,textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #cbdde2;
+    border-radius: 8px;
+    font: inherit;
+}
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #087e8b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font: inherit;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #05636d;
+}

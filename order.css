@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    background-color: #f2f8fa;
+    background-color: rgb(130, 191, 177);
     color: #18343d;
     margin: 0;
     padding: 30px 16px;
@@ -9,7 +9,7 @@ body {
     max-width: 500px;
     margin: 20px auto;
     padding: 24px;
-    background-color: white;
+    background-color: rgb(130, 191, 177);
     border-radius: 14px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }

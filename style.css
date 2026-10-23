@@ -6,7 +6,7 @@
 body {
     margin: 0;
     font-family: Tahoma, sans-serif;
-    background-color: #f4fbff;
+    background-color: #5b9b8b;
 }
 
 .site-header {
@@ -95,7 +95,7 @@ body {
 
 .hero-text {
     font-size: 24px;
-    color: #073b5c;
+    color: #033532;
     margin-bottom: 25px;
 }
 
@@ -290,7 +290,7 @@ button:hover {
     gap: 10px;
 
     padding: 16px;
-    background-color: white;
+    background-color: rgb(130, 191, 177);
     border-radius: 14px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 
@@ -328,7 +328,7 @@ button:hover {
     align-items: stretch;
 }
 .fish-item article {
-    background-color: white;
+    background-color: rgb(130, 191, 177);
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -842,7 +842,7 @@ form button {
 }
 
 .card {
-    background: rgb(3, 55, 57);
+    background: rgb(92, 164, 166);
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0 3px 10px #00000015;

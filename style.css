@@ -247,7 +247,7 @@ button:hover {
     gap: 10px;
 
     padding: 16px;
-    background-color: white;
+    background-color: rgb(2, 79, 74);
     border-radius: 14px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 
@@ -842,7 +842,7 @@ form button {
 }
 
 .card {
-    background: white;
+    background: rgb(3, 55, 57);
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0 3px 10px #00000015;

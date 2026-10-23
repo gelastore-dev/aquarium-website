@@ -44,19 +44,21 @@ body {
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  color: white;
+  color: rgb(2, 38, 40);
 }
 
 .logo-box {
     width: 45px;
     height: 45px;
     background-color: #087eaa;
-    color: white;
+    color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     font-size: 25px;
+    background-size: cover;
+    background-position: center;
 }
 
 /* آیکون منو */
@@ -124,7 +126,7 @@ img.hero {
 
 /* متن روی هدر */
 header > p {
-  color: white;
+  color: rgb(4, 42, 45);
   font-size: 28px;
   font-weight: bold;
   padding: 20px 12px;
@@ -188,7 +190,7 @@ main h2 {
     gap: 20px;
 }
 article {
-    background-color: white;
+    background-color: rgb(1, 40, 45);
     padding: 16px;
     border-radius: 14px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
@@ -714,7 +716,7 @@ form button {
     margin-top: 18px;
     padding: 12px;
     background-color: #087f8c;
-    color: white;
+    color: rgb(4, 49, 56);
     border: none;
     border-radius: 8px;
     font: inherit;
@@ -810,7 +812,7 @@ form button {
     margin-top: 20px;
     padding: 12px 25px;
     background-color: #008c9e;
-    color: white;
+    color: rgb(3, 58, 54);
     text-decoration: none;
     border-radius: 8px;
 }

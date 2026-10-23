@@ -1,16 +1,33 @@
-const parms = new URLSearchParams(window.location.search);
-const productId = Number(parms.get("id"));
+const params = new URLSearchParams(window.location.search);
+const productId = Number(params.get("id"));
 
-console.log(productId);
-console.log(window.products);
-const selectedProduct = window.products.find(function(product) {
+const selectedProduct = (window.products || []).find(function(product) {
     return product.ID === productId;
 });
-console.log(selectedProduct.DESCRIPTION);
-document.getElementById("productName").textContent = selectedProduct.NAME;
-document.getElementById("productPrice").textContent =selectedProduct.PRICE + "تومان";
-document.getElementById("productImage").src = selectedProduct.Image;
-document.getElementById("productDescription").textContent = selectedProduct.DESCRIPTION;
-document.getElementById("buybutton").addEventListener("click", function() {
-    window.location.href = "order.html?id=" + selectedProduct.ID;
-});
+
+if (selectedProduct) {
+    document.getElementById("productName").textContent =
+        selectedProduct.NAME;
+
+    document.getElementById("productPrice").textContent =
+        selectedProduct.PRICE.toLocaleString("fa-IR") + " تومان";
+
+    document.getElementById("productImage").src =
+        selectedProduct.Image;
+
+    document.getElementById("productDescription").textContent =
+        selectedProduct.DESCRIPTION;
+
+    document.getElementById("buybutton").addEventListener("click", function() {
+        window.addToCart(selectedProduct);
+        window.location.href = "order.html";
+    });
+} else {
+    document.getElementById("productDetails").textContent =
+        "محصول موردنظر پیدا نشد! لطفاً از صفحه ماهی‌ها دوباره انتخاب کن.";
+
+    const backButton = document.createElement("a");
+    backButton.href = "fish.html";
+    backButton.textContent = "بازگشت به ماهی‌ها";
+    document.getElementById("productDetails").appendChild(backButton);
+}

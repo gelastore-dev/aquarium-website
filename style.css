@@ -11,6 +11,17 @@ body{
     line-height: 1.8;
     text-align: center;
 }
+.hero {
+  min-height: 420px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 20, 40, 0.8),
+      rgba(5, 20, 40, 0.1)
+    ),
+    url("./images/hero-fish.jpg") center / cover no-repeat;
+  color: white;
+}
 header {
     background-color: #134d4c;
     color: white;

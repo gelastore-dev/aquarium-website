@@ -185,3 +185,11 @@ window.addToCart = function(product) {
         return;
     }
 };
+fetch("https://express-day2-1.onrender.com/api/product")
+.then(Response => Response.json())
+.then(data => {
+    console.log(data);
+})
+.catch(error => {
+    console.log("Error:", error);
+});

@@ -71,6 +71,19 @@ window.products = [
         DESCRIPTION: "ماهی آروانا به فضای شنای زیاد و فیلتراسیون قوی نیاز دارد."
     }
 ];
+fetch("https://express-day2-1.onrender.com/api/product")
+.then(Response => {
+    if (!Response.ok) {
+        throw new Error("دریافت محصولات ناموفق بود!");
+    }
+    return Response.json();
+})
+.then(data => {
+    console.log("محصولات دربافت شده  از api:",data);
+})
+.catch(error => {
+    console.error("خطا در دریافت محصولات:", error);
+});
 
 /* نمایش کارت‌های ماهی */
 const productContainer = document.getElementById("fishs");

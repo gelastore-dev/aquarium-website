@@ -1,126 +1,227 @@
-/* جست‌وجوی دسته‌بندی‌ها */
+
+/* =====================================
+   1. جستجوی دسته‌بندی‌ها
+===================================== */
+
 const searchInput = document.querySelector("#searchInput");
 const cards = document.querySelectorAll(".category-card");
 const searchMessage = document.querySelector("#searchMessage");
 
 if (searchInput) {
     searchInput.addEventListener("input", function () {
+
         const searchText = searchInput.value.trim().toLowerCase();
         let visibleCount = 0;
 
         cards.forEach(function (card) {
+
             const title = card.querySelector("h3");
+
             if (!title) return;
 
-            const matches = title.textContent.trim().toLowerCase()
+            const matches = title.textContent
+                .trim()
+                .toLowerCase()
                 .includes(searchText);
 
             card.style.display = matches ? "" : "none";
+
             if (matches) visibleCount++;
         });
 
         if (searchMessage) {
             searchMessage.textContent =
-                visibleCount === 0 ? "دسته‌بندی موردنظر پیدا نشد!" : "";
+                visibleCount === 0
+                    ? "دسته‌بندی موردنظر پیدا نشد!"
+                    : "";
         }
     });
 }
 
-/* اطلاعات محصولات ماهی */
-window.products = [
-    {
-        ID: 1,
-        NAME: "ماهی گوپی",
-        PRICE: 95000,
-        Image: "images/OIP (10).webp",
-        DESCRIPTION: "ماهی گوپی از ماهی‌های زینتی آب شیرین است و نگهداری نسبتاً آسانی دارد."
-    },
-    {
-        ID: 2,
-        NAME: "ماهی فایتر",
-        PRICE: 550000,
-        Image: "images/OIP (11).webp",
-        DESCRIPTION: "ماهی فایتر با رنگ‌های متنوع و باله‌های زیبا شناخته می‌شود."
-    },
-    {
-        ID: 3,
-        NAME: "ماهی آنجل",
-        PRICE: 550000,
-        Image: "images/OIP (12).webp",
-        DESCRIPTION: "ماهی آنجل از ماهی‌های محبوب آب شیرین است."
-    },
-    {
-        ID: 4,
-        NAME: "ماهی نیون تترا",
-        PRICE: 290000,
-        Image: "images/OIP (13).webp",
-        DESCRIPTION: "ماهی کوچک آب شیرین با رنگ آبی و قرمز درخشان."
-    },
-    {
-        ID: 5,
-        NAME: "ماهی دیسکس",
-        PRICE: 1248000,
-        Image: "images/OIP (14).webp",
-        DESCRIPTION: "ماهی دیسکس به کیفیت پایدار آب و مراقبت منظم نیاز دارد."
-    },
-    {
-        ID: 6,
-        NAME: "ماهی آروانا",
-        PRICE: 9000000,
-        Image: "images/download.webp",
-        DESCRIPTION: "ماهی آروانا به فضای شنای زیاد و فیلتراسیون قوی نیاز دارد."
-    }
-];
-fetch("https://express-day2-1.onrender.com/api/product")
-.then(Response => {
-    if (!Response.ok) {
-        throw new Error("دریافت محصولات ناموفق بود!");
-    }
-    return Response.json();
-})
-.then(data => {
-    console.log("محصولات دربافت شده  از api:",data);
-})
-.catch(error => {
-    console.error("خطا در دریافت محصولات:", error);
-});
 
-/* نمایش کارت‌های ماهی */
-const productContainer = document.getElementById("fishs");
+/* =====================================
+   2. آدرس API
+===================================== */
 
-if (productContainer) {
-    window.products.forEach(function (product) {
+const API_URL =
+    "https://express-day2-1.onrender.com/api/product";
+
+
+/* =====================================
+   3. دریافت محصولات از سرور
+===================================== */
+
+async function getProducts() {
+
+    try {
+
+        const response = await fetch(API_URL);
+
+        if (!response.ok) {
+            throw new Error("دریافت محصولات ناموفق بود!");
+        }
+
+        const data = await response.json();
+
+        // بررسی ساختار اطلاعات دریافتی
+        const products = Array.isArray(data)
+            ? data
+            : data.products;
+
+        if (!Array.isArray(products)) {
+            throw new Error("ساختار اطلاعات محصولات معتبر نیست!");
+        }
+
+        window.apiProducts = products;
+
+        console.log("محصولات دریافت شدند:", products);
+
+        return products;
+
+    } catch (error) {
+
+        console.error("خطا در دریافت محصولات:", error);
+
+        return null;
+    }
+}
+
+
+/* =====================================
+   4. نمایش محصولات دریافتی از API
+===================================== */
+
+function displayProducts(products) {
+
+    const productContainer = document.getElementById("fishs");
+
+    if (!productContainer) return;
+
+    productContainer.innerHTML = "";
+
+    if (!products || products.length === 0) {
+
+        productContainer.textContent =
+            "در حال حاضر محصولی برای نمایش وجود ندارد.";
+
+        return;
+    }
+
+    products.forEach(function (product) {
+
+        const id = product.ID ?? product.id;
+        const name = product.NAME ?? product.name;
+        const price = product.PRICE ?? product.price;
+        const imageUrl = product.Image ?? product.image;
+        const description =
+            product.DESCRIPTION ?? product.description ?? "";
+
+        // ساخت کارت
         const card = document.createElement("div");
         card.className = "card";
 
+        // تصویر
         const image = document.createElement("img");
-        image.src = product.Image;
-        image.alt = product.NAME;
 
-        const price = document.createElement("p");
-        price.className = "price";
-        price.textContent =
-            product.PRICE.toLocaleString("fa-IR") + " تومان";
+        image.src = imageUrl || "images/default.webp";
+        image.alt = name || "محصول";
 
+        image.onerror = function () {
+            this.style.display = "none";
+        };
+
+        // قیمت
+        const priceElement = document.createElement("p");
+
+        priceElement.className = "price";
+
+        const numericPrice = Number(price);
+
+        priceElement.textContent =
+            Number.isFinite(numericPrice)
+                ? numericPrice.toLocaleString("fa-IR") + " تومان"
+                : "قیمت نامشخص";
+
+        // نام محصول
         const title = document.createElement("h2");
-        title.textContent = product.NAME;
 
+        title.textContent = name || "محصول بدون نام";
+
+        // توضیحات (در صورت وجود)
+        const descriptionElement = document.createElement("p");
+
+        descriptionElement.textContent = description;
+
+        // دکمه مشاهده محصول
         const button = document.createElement("button");
+
         button.type = "button";
         button.textContent = "مشاهده محصول";
         button.className = "buy-btn";
 
         button.addEventListener("click", function () {
-            window.location.href = "product.html?id=" + product.ID;
+
+            if (id == null) {
+                alert("شناسه محصول معتبر نیست!");
+                return;
+            }
+
+            window.location.href =
+                "product.html?id=" + encodeURIComponent(id);
         });
 
-        card.append(image, price, title, button);
+        // اضافه کردن عناصر به کارت
+        card.append(
+            image,
+            priceElement,
+            title
+        );
+
+        if (description) {
+            card.appendChild(descriptionElement);
+        }
+
+        card.appendChild(button);
+
+        // اضافه کردن کارت به صفحه
         productContainer.appendChild(card);
+
     });
 }
 
-/* تجهیزات، غذا و تزئینات */
+
+/* =====================================
+   5. اجرای دریافت و نمایش محصولات
+===================================== */
+
+async function initProducts() {
+
+    const productContainer = document.getElementById("fishs");
+
+    if (!productContainer) return;
+
+    productContainer.textContent = "در حال دریافت محصولات...";
+
+    const products = await getProducts();
+
+    if (products === null) {
+
+        productContainer.textContent =
+            "خطا در دریافت محصولات! لطفاً دوباره تلاش کنید.";
+
+        return;
+    }
+
+    displayProducts(products);
+}
+
+
+/* =====================================
+   6. تجهیزات، غذا و تزئینات
+===================================== */
+
 const shopProducts = {
+
     101: { ID: 101, NAME: "فیلتر آکواریوم", PRICE: 1190000 },
     102: { ID: 102, NAME: "بخاری آکواریوم", PRICE: 1270000 },
     103: { ID: 103, NAME: "پمپ هوا", PRICE: 6300000 },
@@ -139,30 +240,20 @@ const shopProducts = {
     304: { ID: 304, NAME: "مرجان مصنوعی", PRICE: 690000 }
 };
 
-/* خرید همه محصولات */
-function buyProduct(id) {
-    const product = shopProducts[id];
 
-    if (!product) {
-        alert("محصول پیدا نشد!");
-        return;
-    }
+/* =====================================
+   7. سیستم سبد خرید
+===================================== */
 
-    if (typeof window.addToCart !== "function") {
-        alert("تابع addToCart پیدا نشد. کد سبد خرید را بررسی کن.");
-        return;
-    }
+window.addToCart = function (product) {
 
-    window.addToCart(product);
-    window.location.href = "order.html";
-}
+    if (
+        !product ||
+        product.ID == null ||
+        !product.NAME ||
+        !Number.isFinite(Number(product.PRICE))
+    ) {
 
-window.buyEquipment = buyProduct;
-window.buyFood = buyProduct;
-window.buyDecoration = buyProduct;
-window.addToCart = function(product) {
-    if (!product || product.ID == null ||
-        !product.NAME || !Number.isFinite(Number(product.PRICE))) {
         alert("اطلاعات محصول معتبر نیست.");
         return;
     }
@@ -170,39 +261,88 @@ window.addToCart = function(product) {
     let cart = [];
 
     try {
-        cart = JSON.parse(localStorage.getItem("mFishCart") || "[]");
-        if (!Array.isArray(cart)) cart = [];
+
+        cart = JSON.parse(
+            localStorage.getItem("mFishCart") || "[]"
+        );
+
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+
     } catch (error) {
+
         cart = [];
     }
 
-    const existing = cart.find(function(item) {
+    const existing = cart.find(function (item) {
+
         return Number(item.ID) === Number(product.ID);
+
     });
 
     if (existing) {
+
         existing.quantity = Number(existing.quantity || 1) + 1;
+
     } else {
+
         cart.push({
+
             ID: Number(product.ID),
             NAME: String(product.NAME),
             PRICE: Number(product.PRICE),
             quantity: 1
+
         });
     }
 
     try {
-        localStorage.setItem("mFishCart", JSON.stringify(cart));
+
+        localStorage.setItem(
+            "mFishCart",
+            JSON.stringify(cart)
+        );
+
     } catch (error) {
+
         alert("ذخیره سبد خرید انجام نشد.");
-        return;
     }
 };
-fetch("https://express-day2-1.onrender.com/api/product")
-.then(Response => Response.json())
-.then(data => {
-    console.log(data);
-})
-.catch(error => {
-    console.log("Error:", error);
-});
+
+
+/* =====================================
+   8. خرید تجهیزات، غذا و تزئینات
+===================================== */
+
+function buyProduct(id) {
+
+    const product = shopProducts[id];
+
+    if (!product) {
+
+        alert("محصول پیدا نشد!");
+        return;
+    }
+
+    if (typeof window.addToCart !== "function") {
+
+        alert("تابع سبد خرید پیدا نشد!");
+        return;
+    }
+
+    window.addToCart(product);
+
+    window.location.href = "order.html";
+}
+
+window.buyEquipment = buyProduct;
+window.buyFood = buyProduct;
+window.buyDecoration = buyProduct;
+
+
+/* =====================================
+   9. شروع برنامه
+===================================== */
+
+initProducts();

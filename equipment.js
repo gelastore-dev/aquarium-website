@@ -3,7 +3,7 @@ console.log("equipment container:", equipmentContainer);
 fetch("https://express-day2-1.onrender.com/api/product")
 .then(Response => Response.json())
 .then(products => {
-    const equipmentProducts = products.filter(prduct => product.category === "equipment");
+    const equipmentProducts = products.filter(product => product.category === "equipment");
     equipmentContainer.innerHTML = "";
     equipmentProducts.forEach(product => {
         const article = document.createElement("article");
@@ -11,7 +11,7 @@ fetch("https://express-day2-1.onrender.com/api/product")
         <h2>${product.name}</h2>
         <p>${product.description}</p>
         <img src="${product.image}" alt="${product.name}">
-        <p class="price">${product.price.tolocaleString("fa-IR")} تومان</p>
+        <p class="price">${Number(product.price).tolocaleString("fa-IR")} تومان</p>
         <button class="buy-btn" onclick="buyEquipment(${product.id})">خرید</button>`;
         equipmentContainer.appendChild(article);
 

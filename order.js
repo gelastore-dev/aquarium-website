@@ -380,10 +380,11 @@ function buyEquipment(id) {
 
 function buyFood(id) {
     const products = {
-        201: { ID: 201, NAME: "غذای پولکی", PRICE: 410000 },
-        202: { ID: 202, NAME: "غذای گرانولی", PRICE: 635000 },
-        203: { ID: 203, NAME: "کرم خونی خشک", PRICE: 290000 },
-        204: { ID: 204, NAME: "قرص جلبک", PRICE: 1200000 }
+        30: { ID: 30, NAME: "غذای پولکی", PRICE: 100000 },
+        31: { ID: 31, NAME: "غذای گرانولی", PRICE: 100000 },
+        32: { ID: 32, NAME: "کرم خونی خشک", PRICE: 100000 },
+        33: { ID: 33, NAME: "قرص جلبک", PRICE: 100000 },
+        204: { ID:204, NAME: "قرص جلبک", PRICE: 120000 }
     };
 
     const product = products[id];

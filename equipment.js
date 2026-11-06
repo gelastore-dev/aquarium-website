@@ -10,8 +10,10 @@ fetch("https://express-day2-1.onrender.com/api/product")
         article.innerHTML = `
         <h2>${product.name}</h2>
         <p>${product.description}</p>
-        <img src="${product.image}" alt="${product.name}">
-        <p class="price">${Number(product.price).tolocaleString("fa-IR")} تومان</p>
+        <img src="${product.image}"
+         alt="${product.name}">
+        <p
+        class="price">${Number(product.price).toLocaleString("fa-IR")} تومان</p>
         <button class="buy-btn" onclick="buyEquipment(${product.id})">خرید</button>`;
         equipmentContainer.appendChild(article);
 

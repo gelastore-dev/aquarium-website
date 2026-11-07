@@ -1,12 +1,14 @@
 
 const foodContainer = document.getElementById("food-products");
 
-fetch("https://express-day2-1.onrender.com/api/product")
-    .then(response => response.json())
-    .then(products => {
-        const foodProducts = products.filter(
-            product => product.category === "food"
-        );
+fetch("https://express-day2-1.onrender.com/api/product/category/food")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("خطا در دریافت غذاها");
+        }
+        return response.json();
+    })
+    .then(foodProducts => {
 
         foodContainer.innerHTML = "";
 
@@ -42,7 +44,9 @@ async function buyFood(id) {
             "https://express-day2-1.onrender.com/api/product"
         );
 
-        if (!response.ok) throw new Error("خطا در دریافت محصولات");
+        if (!response.ok) {
+            throw new Error("خطا در دریافت محصولات");
+        }
 
         const products = await response.json();
 

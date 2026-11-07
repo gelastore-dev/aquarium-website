@@ -1,19 +1,17 @@
 
 const equipmentContainer = document.getElementById("equipment-products");
 
+console.log("NEW EQUIPMENT JS LOADED");
 console.log("equipment container:", equipmentContainer);
 
-fetch("https://express-day2-1.onrender.com/api/product")
+fetch("https://express-day2-1.onrender.com/api/product/category/equipment")
     .then(response => {
         if (!response.ok) {
-            throw new Error("خطا در دریافت محصولات");
+            throw new Error("خطا در دریافت تجهیزات");
         }
         return response.json();
     })
-    .then(products => {
-        const equipmentProducts = products.filter(
-            product => product.category === "equipment"
-        );
+    .then(equipmentProducts => {
 
         equipmentContainer.innerHTML = "";
 
@@ -28,7 +26,7 @@ fetch("https://express-day2-1.onrender.com/api/product")
                     ${Number(product.price).toLocaleString("fa-IR")} تومان
                 </p>
                 <button type="button" class="buy-btn"
-                    onclick="buyEquipment(${product.id})">
+                    onclick="buyEquipment(${Number(product.id)})">
                     خرید
                 </button>
             `;
@@ -65,7 +63,7 @@ window.buyEquipment = async function(id) {
         }
 
         addToCart({
-            ID: product.id,
+            ID: Number(product.id),
             NAME: product.name,
             PRICE: Number(product.price)
         });

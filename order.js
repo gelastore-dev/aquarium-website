@@ -50,7 +50,7 @@ function formatPrice(price) {
 }
 
 /* افزودن محصول یا افزایش تعداد آن */
-function addToCart(product) {
+window.addToCart = function(product) {
     if (
         !product ||
         product.ID == null ||

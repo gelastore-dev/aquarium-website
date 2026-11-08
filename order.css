@@ -1,3 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background: linear-gradient(135deg, #e8f5f1, #a8d5c8);
+    color: #18343d;
+    margin: 0;
+    padding: 30px 16px;
+    line-height: 1.9;
+}
+
+h1,
+h2 {
+    text-align: center;
+    color: #075b65;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 23px;
+    margin: 25px 0 18px;
+}
+
+#cartSection,
+.order-summery,
+#savedOrderSection,
+#orderForm {
+    max-width: 750px;
+    margin: 25px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(24, 52, 61, 0.08);
+}
+
+#cartItems {
+    display: grid;
+    gap: 15px;
+}
+
+#cartItems article,
+#cartItems > div {
+    padding: 18px;
+    background: #f1f8f6;
+    border: 1px solid #d8ebe5;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+#cartSection p,
+.order-summery p,
+#savedOrderSection p {
+    font-size: 16px;
+}
+
+#cartTotal,
+#summeryPrice {
+    color: #087e8b;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin: 18px 0 7px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #cbdde2;
+    border-radius: 11px;
+    background: #f8fbfa;
+    font: inherit;
+    color: #18343d;
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #087e8b;
+    box-shadow: 0 0 0 3px rgba(8, 126, 139, 0.12);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
 button {
     width: auto;
     padding: 10px 20px;

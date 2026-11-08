@@ -23,8 +23,8 @@ fetch("https://express-day2-1.onrender.com/api/product/category/food")
                     ${Number(product.price).toLocaleString("fa-IR")} تومان
                 </p>
                 <button type="button" class="buy-btn"
-                    onclick="buyFood(${Number(product.id)})">
-                    خرید
+                    onclick="window.location.href='product.html?id=${product.id}'">
+                    مشاهده محصول
                 </button>
             `;
 

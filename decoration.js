@@ -15,7 +15,7 @@ fetch("https://express-day2-1.onrender.com/api/product")
         alt="${product.name}">
         <p
         class="price">${Number(product.price).toLocaleString("fa-IR")} تومان</p>
-        <button type="button" class="buy-btn" onclick="buyFood(${product.id})">خرید</button>`;
+        <button type="button" class="buy-btn" onclick="buyDecoration(${product.id})">خرید</button>`;
         decorationContainer.appendChild(article);
     });
 })

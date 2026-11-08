@@ -1,15 +1,22 @@
 
 const apiUrl = "https://express-day2-1.onrender.com/api/product";
+console.log("FISH JS LOADED");
 
 async function loadFish() {
     try {
-        const response = await fetch(apiUrl);
+        console.log("شروع درخواست API");
+
+const response = await fetch(apiUrl);
+
+console.log("پاسخ سرور:", response.status);
+        console.log("درخواست به سرور ارسال شد");
 
         if (!response.ok) {
             throw new Error("خطا در دریافت محصولات");
         }
 
         const products = await response.json();
+        console.log("PRODUCTS:", products);
 
         const fishProducts = products.filter(product =>
             product.category === "fish"

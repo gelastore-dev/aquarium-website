@@ -1,48 +1,47 @@
-body {
-    font-family: sans-serif;
-    background-color: rgb(130, 191, 177);
-    color: #18343d;
-    margin: 0;
-    padding: 30px 16px;
-}
-.order-summery form {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 24px;
-    background-color: rgb(130, 191, 177);
-    border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-}
-h1,h2 {
-    text-align: center;
-}
-label {
-    display: block;
-    margin-bottom: 8px;
-}
-input,textarea {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 16px;
-    border: 1px solid #cbdde2;
-    border-radius: 8px;
-    font: inherit;
-}
-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
 button {
-    width: 100%;
-    padding: 12px;
-    background-color: #087e8b;
+    width: auto;
+    padding: 10px 20px;
+    background: #087e8b;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font: inherit;
     cursor: pointer;
+    transition: 0.2s;
 }
+
 button:hover {
-    background-color: #05636d;
+    background: #05636d;
+}
+
+#orderForm button[type="submit"] {
+    width: 100%;
+    margin-top: 22px;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#orderMessage {
+    max-width: 750px;
+    margin: 20px auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px 10px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    #cartSection,
+    .order-summery,
+    #savedOrderSection,
+    #orderForm {
+        padding: 18px 14px;
+    }
 }

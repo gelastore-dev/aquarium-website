@@ -1,0 +1,7 @@
+#food-products img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    display: block;
+    margin: 10px auto;
+}

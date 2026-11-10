@@ -923,3 +923,12 @@ form button {
 .search-section h2 {
     color: #065b51;
 }
+
+#productImage {
+    width: 140px;
+    height: 140px;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 10px auto;
+}

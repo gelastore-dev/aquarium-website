@@ -4,62 +4,63 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>تزئینات آکواریوم | M Fish</title>
+    <title>تزئینات آکواریوم | M FISH</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>M FISH</h1>
-        <nav>
+
+    <header class="site-header" dir="rtl">
+
+        <div class="top-bar">
+            <h1>M FISH</h1>
+
+            <button class="menu-btn" id="menuBtn" type="button"
+                aria-label="باز کردن منو"
+                aria-expanded="false"
+                aria-controls="mainNav">
+                ☰
+            </button>
+        </div>
+
+        <nav class="nav-menu" id="mainNav">
             <a href="index.html">خانه</a>
-            <a href="product.html">محصولات</a>
+            <a href="fish.html">ماهی‌ها</a>
+            <a href="food.html">غذا</a>
+            <a href="equipment.html">تجهیزات</a>
+            <a href="decoration.html">دکوراسیون</a>
             <a href="about.html">درباره ما</a>
             <a href="contact.html">تماس با ما</a>
-            <a href="order.html">سبد خرید</a>
         </nav>
+
+        <div class="shop-toolbar">
+            <input type="search" id="searchInput"
+                placeholder="جستجوی دکوراسیون..."
+                aria-label="جستجوی دکوراسیون">
+
+            <select id="priceFilter" aria-label="فیلتر قیمت">
+                <option value="all">همه قیمت‌ها</option>
+                <option value="500000">زیر ۵۰۰ هزار تومان</option>
+                <option value="1000000">زیر یک میلیون تومان</option>
+                <option value="1000001">بالای یک میلیون تومان</option>
+            </select>
+
+            <a href="order.html" class="cart-link">
+                🛒 سبد خرید
+                <span id="headerCartCount">0</span>
+            </a>
+        </div>
+
     </header>
 
     <main>
         <section class="decor-item" id="decoration-products">
-            <article>
-                <h2>گیاه مصنوعی آکواریوم</h2>
-                <p>برای زیباتر شدن فضای آکواریوم</p>
-                <img src="images/OIP (23).webp" alt="گیاه مصنوعی">
-                <p class="price">250000 تومان</p>
-                <button type="button" class="buy-btn"
-                    onclick="buyDecoration(301)">خرید</button>
-            </article>
-
-            <article>
-                <h2>سنگ و شن تزیینی</h2>
-                <p>برای کف آکواریوم</p>
-                <img src="images/OIP (24).webp" alt="سنگ تزیینی">
-                <p class="price">689000 تومان</p>
-                <button type="button" class="buy-btn"
-                    onclick="buyDecoration(302)">خرید</button>
-            </article>
-
-            <article>
-                <h2>چوب تزیینی</h2>
-                <p>برای ساخت دکور طبیعی</p>
-                <img src="images/OIP (25).webp" alt="چوب تزیینی">
-                <p class="price">1580000 تومان</p>
-                <button type="button" class="buy-btn"
-                    onclick="buyDecoration(303)">خرید</button>
-            </article>
-
-            <article>
-                <h2>مرجان مصنوعی</h2>
-                <p>برای طراحی آکواریوم فانتزی</p>
-                <img src="images/OIP (26).webp" alt="مرجان مصنوعی">
-                <p class="price">690000 تومان</p>
-                <button type="button" class="buy-btn"
-                    onclick="buyDecoration(304)">خرید</button>
-            </article>
+            <p>در حال دریافت محصولات...</p>
         </section>
     </main>
+
     <script src="order.js"></script>
     <script src="decoration.js"></script>
+    <script src="header.js"></script>
+
 </body>
 </html>

@@ -1,34 +1,66 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>
-            M fish
-        </title>
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js" defer></script>
-    </head>
-    <body>
-        <header>
-            <h1>
-                ام فیش
-            </h1>
-            <nav>
-                <a href="index.html">خانه</a>
-                <a href="product.html">محصولات</a>
-                <a href="about.html">درباره ما</a>
-                <a href="contact.html">تماس با ما</a>
-                <a href="order.html">سبد خرید</a>
-            </nav>
-        </header>
-        <main>
-            <section class="food-item" id="food-products">
-                <p>در حال دریافت محصولات...</p>
-            </section>
-        </main>
-        <script src="food.js"></script>
-        <script src="order.js"></script>
-  
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>M FISH | غذا</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header" dir="rtl">
+
+        <div class="top-bar">
+            <h1>M FISH</h1>
+
+            <button class="menu-btn" id="menuBtn" type="button"
+                aria-label="باز کردن منو"
+                aria-expanded="false"
+                aria-controls="mainNav">
+                ☰
+            </button>
+        </div>
+
+        <nav class="nav-menu" id="mainNav">
+            <a href="index.html">خانه</a>
+            <a href="fish.html">ماهی‌ها</a>
+            <a href="food.html">غذا</a>
+            <a href="equipment.html">تجهیزات</a>
+            <a href="decoration.html">دکوراسیون</a>
+            <a href="about.html">درباره ما</a>
+            <a href="contact.html">تماس با ما</a>
+        </nav>
+
+        <div class="shop-toolbar">
+            <input type="search" id="searchInput"
+                placeholder="جستجوی غذا..."
+                aria-label="جستجوی غذا">
+
+            <select id="priceFilter" aria-label="فیلتر قیمت">
+                <option value="all">همه قیمت‌ها</option>
+                <option value="500000">زیر ۵۰۰ هزار تومان</option>
+                <option value="1000000">زیر یک میلیون تومان</option>
+                <option value="1000001">بالای یک میلیون تومان</option>
+            </select>
+
+            <a href="order.html" class="cart-link">
+                🛒 سبد خرید
+                <span id="headerCartCount">0</span>
+            </a>
+        </div>
+
+    </header>
+
+    <main>
+        <section class="food-item" id="food-products">
+            <p>در حال دریافت محصولات...</p>
+        </section>
+    </main>
+
+    <script src="food.js"></script>
+    <script src="order.js"></script>
+    <script src="header.js"></script>
+
+</body>
 </html>

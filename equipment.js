@@ -2,7 +2,6 @@
 const equipmentContainer = document.getElementById("equipment-products");
 
 console.log("NEW EQUIPMENT JS LOADED");
-console.log("equipment container:", equipmentContainer);
 
 fetch("https://express-day2-1.onrender.com/api/product/category/equipment")
     .then(response => {
@@ -18,9 +17,12 @@ fetch("https://express-day2-1.onrender.com/api/product/category/equipment")
         equipmentProducts.forEach(product => {
             const article = document.createElement("article");
 
+            article.dataset.name = product.name.toLowerCase();
+            article.dataset.price = Number(product.price);
+
             article.innerHTML = `
                 <h2>${product.name}</h2>
-                <p>${product.description}</p>
+                <p>${product.description || ""}</p>
                 <img src="${product.image}" alt="${product.name}">
                 <p class="price">
                     ${Number(product.price).toLocaleString("fa-IR")} تومان
@@ -33,13 +35,54 @@ fetch("https://express-day2-1.onrender.com/api/product/category/equipment")
 
             equipmentContainer.appendChild(article);
         });
+
+        // جستجو و فیلتر قیمت
+        const searchInput = document.getElementById("searchInput");
+        const priceFilter = document.getElementById("priceFilter");
+
+        function filterEquipment() {
+            const searchText = searchInput
+                ? searchInput.value.trim().toLowerCase()
+                : "";
+
+            const selectedPrice = priceFilter
+                ? priceFilter.value
+                : "all";
+
+            equipmentContainer.querySelectorAll("article").forEach(article => {
+                const name = article.dataset.name;
+                const price = Number(article.dataset.price);
+
+                const matchesSearch = name.includes(searchText);
+
+                let matchesPrice = true;
+
+                if (selectedPrice === "500000") {
+                    matchesPrice = price < 500000;
+                } else if (selectedPrice === "1000000") {
+                    matchesPrice = price < 1000000;
+                } else if (selectedPrice === "1000001") {
+                    matchesPrice = price > 1000000;
+                }
+
+                article.hidden = !(matchesSearch && matchesPrice);
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener("input", filterEquipment);
+        }
+
+        if (priceFilter) {
+            priceFilter.addEventListener("change", filterEquipment);
+        }
+
     })
     .catch(error => {
         console.error("خطا در دریافت تجهیزات:", error);
         equipmentContainer.innerHTML =
             "<p>دریافت محصولات با خطا مواجه شد</p>";
     });
-
 
 window.buyEquipment = async function(id) {
     try {
@@ -75,3 +118,4 @@ window.buyEquipment = async function(id) {
         alert("خطا در افزودن محصول به سبد خرید.");
     }
 };
+

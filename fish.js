@@ -1,62 +1,95 @@
 
 const apiUrl = "https://express-day2-1.onrender.com/api/product";
-console.log("FISH JS LOADED");
 
 async function loadFish() {
     try {
-        console.log("شروع درخواست API");
-
-const response = await fetch(apiUrl);
-
-console.log("پاسخ سرور:", response.status);
-        console.log("درخواست به سرور ارسال شد");
+        const response = await fetch(apiUrl);
 
         if (!response.ok) {
             throw new Error("خطا در دریافت محصولات");
         }
 
         const products = await response.json();
-        console.log("PRODUCTS:", products);
 
         const fishProducts = products.filter(product =>
             product.category === "fish"
         );
 
         const container = document.getElementById("productList");
-
         container.innerHTML = "";
 
-        // استفاده از کلاس CSS قبلی
         const fishGrid = document.createElement("div");
         fishGrid.className = "fish-item";
 
         fishProducts.forEach(product => {
-            fishGrid.innerHTML += `
-                <article>
-                    <h2>${product.name}</h2>
+            const article = document.createElement("article");
 
-                    <img src="${product.image}" alt="${product.name}">
+            article.dataset.name = product.name.toLowerCase();
+            article.dataset.price = Number(product.price);
 
-                    <p>${product.description || ""}</p>
+            article.innerHTML = `
+                <h2>${product.name}</h2>
 
-                    <p>
-                        قیمت:
-                        ${Number(product.price).toLocaleString("fa-IR")}
-                        تومان
-                    </p>
+                <img src="${product.image}" alt="${product.name}">
 
-                    <button class="buy-button"
-                        onclick="window.location.href='product.html?id=${product.id}'">
-                        مشاهده محصول
-                    </button>
-                </article>
+                <p>${product.description || ""}</p>
+
+                <p>
+                    قیمت:
+                    ${Number(product.price).toLocaleString("fa-IR")}
+                    تومان
+                </p>
+
+                <button class="buy-button"
+                    onclick="window.location.href='product.html?id=${product.id}'">
+                    مشاهده محصول
+                </button>
             `;
+
+            fishGrid.appendChild(article);
         });
 
         container.appendChild(fishGrid);
 
+        // فعال‌سازی جستجو و فیلتر قیمت
+        const searchInput = document.getElementById("searchInput");
+        const priceFilter = document.getElementById("priceFilter");
+
+        function filterFish() {
+            const searchText = searchInput.value.trim().toLowerCase();
+            const selectedPrice = priceFilter.value;
+
+            fishGrid.querySelectorAll("article").forEach(article => {
+                const name = article.dataset.name;
+                const price = Number(article.dataset.price);
+
+                const matchesSearch = name.includes(searchText);
+
+                let matchesPrice = true;
+
+                if (selectedPrice === "500000") {
+                    matchesPrice = price < 500000;
+                } else if (selectedPrice === "1000000") {
+                    matchesPrice = price < 1000000;
+                } else if (selectedPrice === "1000001") {
+                    matchesPrice = price > 1000000;
+                }
+
+                article.hidden = !(matchesSearch && matchesPrice);
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener("input", filterFish);
+        }
+
+        if (priceFilter) {
+            priceFilter.addEventListener("change", filterFish);
+        }
+
     } catch (error) {
         console.error("Fish Error:", error);
+
         document.getElementById("productList").textContent =
             "دریافت اطلاعات با مشکل مواجه شد";
     }

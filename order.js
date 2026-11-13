@@ -275,9 +275,19 @@ if (orderForm) {
             return String("٠١٢٣٤٥٦٧٨٩".indexOf(digit));
         });
 
-        if (!name || !phone || !address) {
-            showMessage("لطفاً همه فیلدها را پر کنید.");
-            return;
+        if (!name) {
+            showMessage("لطفاً نام خود را وارد کنید.");
+                 return;
+        }
+
+        if (!phone) {
+            showMessage("لطفاً شماره تماس خود را وارد کنید.");
+                return;
+        }
+
+        if (!address) {
+            showMessage("لطفاً آدرس خود را وارد کنید.");
+                return;
         }
 
         if (!/^[0-9]{10,11}$/.test(normalizedPhone)) {

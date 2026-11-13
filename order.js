@@ -1,9 +1,11 @@
 
 const CART_KEY = "mFishCart";
 const ORDER_KEY = "mFishOrder";
+const API_URL = "https://express-day2-1.onrender.com/api/orders";
 
 let cart = loadCart();
 
+/* خواندن سبد خرید */
 function loadCart() {
     try {
         const savedCart = JSON.parse(
@@ -28,12 +30,14 @@ function loadCart() {
                 quantity: product.quantity
             };
         });
+
     } catch (error) {
         console.error("خواندن سبد خرید ناموفق بود:", error);
         return [];
     }
 }
 
+/* ذخیره سبد خرید */
 function saveCart() {
     try {
         localStorage.setItem(CART_KEY, JSON.stringify(cart));
@@ -45,12 +49,23 @@ function saveCart() {
     renderCart();
 }
 
+/* فرمت قیمت */
 function formatPrice(price) {
     return Number(price).toLocaleString("fa-IR") + " تومان";
 }
 
-/* افزودن محصول یا افزایش تعداد آن */
+/* نمایش پیام */
+function showMessage(message) {
+    const element = document.getElementById("orderMessage");
+
+    if (element) {
+        element.textContent = message;
+    }
+}
+
+/* افزودن محصول به سبد خرید */
 window.addToCart = function(product) {
+
     if (
         !product ||
         product.ID == null ||
@@ -79,10 +94,11 @@ window.addToCart = function(product) {
 
     saveCart();
     showMessage(product.NAME + " به سبد خرید اضافه شد.");
-}
+};
 
 /* تغییر تعداد محصول */
 function changeQuantity(productId, amount) {
+
     const product = cart.find(function(item) {
         return Number(item.ID) === Number(productId);
     });
@@ -102,6 +118,7 @@ function changeQuantity(productId, amount) {
 
 /* حذف محصول */
 function removeFromCart(productId) {
+
     cart = cart.filter(function(product) {
         return Number(product.ID) !== Number(productId);
     });
@@ -109,36 +126,29 @@ function removeFromCart(productId) {
     saveCart();
 }
 
-/* خالی کردن کل سبد */
+/* خالی کردن سبد */
 function clearCart() {
     cart = [];
     saveCart();
 }
 
-/* تعداد کل واحدهای محصولات */
+/* محاسبه تعداد */
 function calculateCount() {
     return cart.reduce(function(sum, product) {
         return sum + product.quantity;
     }, 0);
 }
 
-/* جمع کل قیمت با احتساب تعداد */
+/* محاسبه مبلغ کل */
 function calculateTotal() {
     return cart.reduce(function(sum, product) {
         return sum + Number(product.PRICE) * product.quantity;
     }, 0);
 }
 
-function showMessage(message) {
-    const element = document.getElementById("orderMessage");
-
-    if (element) {
-        element.textContent = message;
-    }
-}
-
 /* نمایش سبد خرید */
 function renderCart() {
+
     const cartItems = document.getElementById("cartItems");
     const cartCount = document.getElementById("cartCount");
     const cartTotal = document.getElementById("cartTotal");
@@ -171,12 +181,16 @@ function renderCart() {
     cartItems.replaceChildren();
 
     if (cart.length === 0) {
+
         const emptyMessage = document.createElement("p");
         emptyMessage.textContent = "سبد خرید شما خالی است.";
+
         cartItems.appendChild(emptyMessage);
         return;
     }
+
     cart.forEach(function(product) {
+
         const item = document.createElement("div");
         item.className = "cart-item";
 
@@ -190,13 +204,14 @@ function renderCart() {
         quantity.textContent = "تعداد: " + product.quantity;
 
         const subtotal = document.createElement("span");
-        subtotal.textContent = "جمع: " +
+        subtotal.textContent =
+            "جمع: " +
             formatPrice(product.PRICE * product.quantity);
 
         const decrease = document.createElement("button");
         decrease.type = "button";
         decrease.textContent = "−";
-        decrease.setAttribute("aria-label", "کم کردن تعداد " + product.NAME);
+
         decrease.addEventListener("click", function() {
             changeQuantity(product.ID, -1);
         });
@@ -204,7 +219,7 @@ function renderCart() {
         const increase = document.createElement("button");
         increase.type = "button";
         increase.textContent = "+";
-        increase.setAttribute("aria-label", "زیاد کردن تعداد " + product.NAME);
+
         increase.addEventListener("click", function() {
             changeQuantity(product.ID, 1);
         });
@@ -212,6 +227,7 @@ function renderCart() {
         const removeButton = document.createElement("button");
         removeButton.type = "button";
         removeButton.textContent = "حذف";
+
         removeButton.addEventListener("click", function() {
             removeFromCart(product.ID);
         });
@@ -230,7 +246,7 @@ function renderCart() {
     });
 }
 
-/* پشتیبانی از صفحه‌ای که محصول را با ?id= دریافت می‌کند */
+/* دریافت محصول از آدرس صفحه */
 const params = new URLSearchParams(window.location.search);
 const productId = Number(params.get("id"));
 
@@ -241,13 +257,18 @@ const selectedProduct = Number.isFinite(productId) && productId > 0
     : null;
 
 if (selectedProduct) {
+
     const orderProduct = document.getElementById("orderProduct");
     const orderPrice = document.getElementById("orderPrice");
 
-    if (orderProduct) orderProduct.textContent = selectedProduct.NAME;
-    if (orderPrice) orderPrice.textContent = formatPrice(selectedProduct.PRICE);
+    if (orderProduct) {
+        orderProduct.textContent = selectedProduct.NAME;
+    }
 
-    // محصول موجود دوباره به طور خودکار اضافه نمی‌شود.
+    if (orderPrice) {
+        orderPrice.textContent = formatPrice(selectedProduct.PRICE);
+    }
+
     const alreadyInCart = cart.some(function(product) {
         return Number(product.ID) === Number(selectedProduct.ID);
     });
@@ -255,43 +276,39 @@ if (selectedProduct) {
     if (!alreadyInCart) {
         addToCart(selectedProduct);
     }
+
 } else if (params.has("id")) {
     showMessage("محصول موردنظر پیدا نشد.");
 }
 
+/* ثبت سفارش در سرور */
 const orderForm = document.getElementById("orderForm");
 
 if (orderForm) {
-    orderForm.addEventListener("submit", function(event) {
+
+    orderForm.addEventListener("submit", async function(event) {
+
         event.preventDefault();
 
-        const name = document.getElementById("customerName")?.value.trim() || "";
-        const phone = document.getElementById("customerPhone")?.value.trim() || "";
-        const address = document.getElementById("customerAddress")?.value.trim() || "";
+        const name = document.getElementById("customerName").value.trim();
+        const phone = document.getElementById("customerPhone").value.trim();
+        const address = document.getElementById("customerAddress").value.trim();
 
-        const normalizedPhone = phone.replace(/[۰-۹]/g, function(digit) {
-            return String("۰۱۲۳۴۵۶۷۸۹".indexOf(digit));
-        }).replace(/[٠-٩]/g, function(digit) {
-            return String("٠١٢٣٤٥٦٧٨٩".indexOf(digit));
-        });
+        const normalizedPhone = phone
+            .replace(/[۰-۹]/g, digit =>
+                String("۰۱۲۳۴۵۶۷۸۹".indexOf(digit))
+            )
+            .replace(/[٠-٩]/g, digit =>
+                String("٠١٢٣٤٥٦٧٨٩".indexOf(digit))
+            );
 
-        if (!name) {
-            showMessage("لطفاً نام خود را وارد کنید.");
-                 return;
-        }
-
-        if (!phone) {
-            showMessage("لطفاً شماره تماس خود را وارد کنید.");
-                return;
-        }
-
-        if (!address) {
-            showMessage("لطفاً آدرس خود را وارد کنید.");
-                return;
+        if (!name || !phone || !address) {
+            showMessage("لطفاً تمام اطلاعات را وارد کنید.");
+            return;
         }
 
         if (!/^[0-9]{10,11}$/.test(normalizedPhone)) {
-            showMessage("لطفاً شماره تماس معتبر وارد کنید.");
+            showMessage("شماره تماس معتبر نیست.");
             return;
         }
 
@@ -300,47 +317,97 @@ if (orderForm) {
             return;
         }
 
-        const order = {
-            products: cart.map(function(product) {
-                return {
-                    productId: product.ID,
-                    productName: product.NAME,
-                    price: product.PRICE,
-                    quantity: product.quantity
-                };
-            }),
-            total: calculateTotal(),
-            customerName: name,
-            customerPhone: normalizedPhone,
-            customerAddress: address,
-            createdAt: new Date().toISOString()
-        };
+        const submitButton = orderForm.querySelector(
+            'button[type="submit"]'
+        );
+
+        submitButton.disabled = true;
+        showMessage("در حال ارسال سفارش...");
 
         try {
-            localStorage.setItem(ORDER_KEY, JSON.stringify(order));
-            showMessage("سفارش آزمایشی در این مرورگر ذخیره شد.");
+
+            const response = await fetch(API_URL, {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    customerName: name,
+                    customerPhone: normalizedPhone,
+                    customerAddress: address,
+
+                    products: cart.map(function(product) {
+                        return {
+                            productId: product.ID,
+                            quantity: product.quantity
+                        };
+                    })
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.message || "ثبت سفارش ناموفق بود."
+                );
+            }
+
+            localStorage.setItem(
+                ORDER_KEY,
+                JSON.stringify(data.order)
+            );
+
+            cart = [];
+            saveCart();
+
+            showMessage(
+                "سفارش با موفقیت ثبت شد. شماره سفارش: " +
+                data.order.orderId
+            );
+
             renderSavedOrder();
+
         } catch (error) {
-            showMessage("ذخیره سفارش ناموفق بود.");
-            console.error(error);
+
+            console.error("Order error:", error);
+
+            showMessage(
+                error.message || "ارتباط با سرور برقرار نشد."
+            );
+
+        } finally {
+            submitButton.disabled = false;
         }
     });
 }
 
-
+/* نمایش آخرین سفارش */
 function renderSavedOrder() {
+
     try {
-        const savedOrder = JSON.parse(localStorage.getItem(ORDER_KEY) || "null");
+
+        const savedOrder = JSON.parse(
+            localStorage.getItem(ORDER_KEY) || "null"
+        );
+
         if (!savedOrder) return;
 
         const section = document.getElementById("savedOrderSection");
-        if (section) section.hidden = false;
+
+        if (section) {
+            section.hidden = false;
+        }
 
         const customer = document.getElementById("savedCustomerName");
         const products = document.getElementById("savedProductName");
         const price = document.getElementById("savedProductPrice");
 
-        if (customer) customer.textContent = savedOrder.customerName;
+        if (customer) {
+            customer.textContent = savedOrder.customerName;
+        }
 
         if (products) {
             products.textContent = savedOrder.products.map(function(product) {
@@ -348,14 +415,18 @@ function renderSavedOrder() {
             }).join("، ");
         }
 
-        if (price) price.textContent = formatPrice(savedOrder.total);
+        if (price) {
+            price.textContent = formatPrice(savedOrder.total);
+        }
+
     } catch (error) {
         console.error("خواندن سفارش ذخیره‌شده ناموفق بود:", error);
     }
 }
 
-
+/* هماهنگی سبد خرید بین صفحات */
 window.addEventListener("storage", function(event) {
+
     if (event.key === CART_KEY) {
         cart = loadCart();
         renderCart();
@@ -363,9 +434,11 @@ window.addEventListener("storage", function(event) {
 });
 
 window.addEventListener("pageshow", function() {
+
     cart = loadCart();
     renderCart();
 });
 
 renderCart();
 renderSavedOrder();
+

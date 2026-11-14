@@ -1,48 +1,76 @@
-const apiUrl = "https://express-day2-1.onrender.com/api/product";
+
+const API_URL = "https://express-day2-1.onrender.com/api/product";
+
 async function loadProduct() {
     try {
-        const params = new
-        URLSearchParams(window.location.search);
-        const productId =
-        Number(params.get("id"));
-        const response = await fetch(apiUrl);
-        if(!response.ok) {
+        const params = new URLSearchParams(window.location.search);
+        const productId = Number(params.get("id"));
+
+        if (!Number.isInteger(productId) || productId <= 0) {
+            throw new Error("شناسه محصول معتبر نیست.");
+        }
+
+        const response = await fetch(API_URL);
+
+        if (!response.ok) {
             throw new Error("خطا در دریافت محصولات");
         }
+
         const products = await response.json();
-        const Product = 
-        products.find(function(item) {
+
+        const product = products.find(function(item) {
             return Number(item.id) === productId;
         });
-if (!Product) {
-    document.getElementById("productDetails").textContent =
-        "محصول مورد نظر یافت نشد!";
-        return;}
-        document.getElementById("productName").textContent = Product.name;
 
-    document.getElementById("productPrice").textContent =
-        Number(Product.price).toLocaleString("fa-IR") + " تومان";
+        if (!product) {
+            document.getElementById("productDetails").textContent =
+                "محصول مورد نظر یافت نشد!";
+            return;
+        }
 
-    document.getElementById("productImage").src =
-        Product.image;
+        /* نمایش اطلاعات محصول */
+        document.getElementById("productName").textContent =
+            product.name;
 
-    document.getElementById("productDescription").textContent =
-        Product.description || "توضیحاتی برای این محصول ثبت نشده است.";
-    const selectedProduct = {
-        ...Product,
-        ID: Product.id,
-        NAME: Product.name,
-        PRICE: Product.price,
-        Image: Product.image,
-        DESCRIPTION: Product.description
-    };
-    document.getElementById("buybutton").addEventListener("click", function() {
-        window.addToCart(selectedProduct);
-        window.location.href = "order.html";
-    });
-} catch (error) {
-    console.error("Product Error:", error);
-    document.getElementById("productDetails").textContent = "دریافت اطلاعات با مشکل مواجه است";
+        document.getElementById("productPrice").textContent =
+            Number(product.price).toLocaleString("fa-IR") + " تومان";
+
+        document.getElementById("productImage").src =
+            product.image;
+
+        document.getElementById("productDescription").textContent =
+            product.description || "توضیحاتی برای این محصول ثبت نشده است.";
+
+        /* تبدیل اطلاعات به ساختار سبد خرید */
+        const selectedProduct = {
+            ID: Number(product.id),
+            NAME: String(product.name),
+            PRICE: Number(product.price),
+            quantity: 1
+        };
+
+        /* دکمه خرید */
+        const buyButton = document.getElementById("buybutton");
+
+        buyButton.addEventListener("click", function() {
+
+            if (typeof window.addToCart !== "function") {
+                console.error("تابع addToCart پیدا نشد.");
+                alert("امکان افزودن محصول به سبد خرید وجود ندارد.");
+                return;
+            }
+
+            window.addToCart(selectedProduct);
+
+            window.location.href = "order.html";
+        });
+
+    } catch (error) {
+        console.error("Product Error:", error);
+
+        document.getElementById("productDetails").textContent =
+            "دریافت اطلاعات محصول با مشکل مواجه شد.";
+    }
 }
-}
+
 loadProduct();

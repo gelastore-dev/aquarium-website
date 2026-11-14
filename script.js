@@ -43,7 +43,7 @@ if (searchInput) {
    2. آدرس API
 ===================================== */
 
-const API_URL =
+const SCRIPT_API_URL =
     "https://express-day2-1.onrender.com/api/product";
 
 
@@ -55,7 +55,7 @@ async function getProducts() {
 
     try {
 
-        const response = await fetch(API_URL);
+        const response = await fetch(SCRIPT_API_URL);
 
         if (!response.ok) {
             throw new Error("دریافت محصولات ناموفق بود!");
@@ -63,7 +63,6 @@ async function getProducts() {
 
         const data = await response.json();
 
-        // بررسی ساختار اطلاعات دریافتی
         const products = Array.isArray(data)
             ? data
             : data.products;
@@ -116,11 +115,9 @@ function displayProducts(products) {
         const description =
             product.DESCRIPTION ?? product.description ?? "";
 
-        // ساخت کارت
         const card = document.createElement("div");
         card.className = "card";
 
-        // تصویر
         const image = document.createElement("img");
 
         image.src = imageUrl || "images/default.webp";
@@ -130,9 +127,7 @@ function displayProducts(products) {
             this.style.display = "none";
         };
 
-        // قیمت
         const priceElement = document.createElement("p");
-
         priceElement.className = "price";
 
         const numericPrice = Number(price);
@@ -142,17 +137,12 @@ function displayProducts(products) {
                 ? numericPrice.toLocaleString("fa-IR") + " تومان"
                 : "قیمت نامشخص";
 
-        // نام محصول
         const title = document.createElement("h2");
-
         title.textContent = name || "محصول بدون نام";
 
-        // توضیحات (در صورت وجود)
         const descriptionElement = document.createElement("p");
-
         descriptionElement.textContent = description;
 
-        // دکمه مشاهده محصول
         const button = document.createElement("button");
 
         button.type = "button";
@@ -170,7 +160,6 @@ function displayProducts(products) {
                 "product.html?id=" + encodeURIComponent(id);
         });
 
-        // اضافه کردن عناصر به کارت
         card.append(
             image,
             priceElement,
@@ -183,7 +172,6 @@ function displayProducts(products) {
 
         card.appendChild(button);
 
-        // اضافه کردن کارت به صفحه
         productContainer.appendChild(card);
 
     });

@@ -1,5 +1,4 @@
-
-const API_URL = "https://express-day2-1.onrender.com/api/product";
+const PRODUCT_API_URL = "https://express-day2-1.onrender.com/api/product";
 
 async function loadProduct() {
     try {
@@ -10,7 +9,7 @@ async function loadProduct() {
             throw new Error("شناسه محصول معتبر نیست.");
         }
 
-        const response = await fetch(API_URL);
+        const response = await fetch(PRODUCT_API_URL);
 
         if (!response.ok) {
             throw new Error("خطا در دریافت محصولات");
